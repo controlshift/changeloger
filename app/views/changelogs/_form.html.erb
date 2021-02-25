@@ -5,6 +5,7 @@
     <%= f.input :body, input_html: {rows: 10}, hint: 'Supports Github flavored markdown' %>
     <%= f.input :pull_request_id, label: 'Pull Request ID' %>
     <%= f.input :kind, collection: Changelog::KINDS, include_blank: false %>
+    <%= f.input :created_at, as: :datetime %>
   </div>
 
   <div class="form-actions">
