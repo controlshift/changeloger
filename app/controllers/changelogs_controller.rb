@@ -45,7 +45,7 @@ class ChangelogsController < ApplicationController
   end
 
   def feed
-    render json: Changelog.all
+    render json: Changelog.published
   end
 
   def destroy
