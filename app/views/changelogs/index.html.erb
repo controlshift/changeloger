@@ -3,34 +3,21 @@
   <%= render partial: 'form' %>
 </div>
 
+<hr/>
+
+<div class="my-5">
+  <div class="row">
+    <div class="col-2">
+      <%= button_to 'Publish', publish_changelogs_path, method: 'post', class: 'btn btn-light' %>
+    </div>
+    <div class="col-8">
+      Publish pending logs to marketing site and make available for mailing.
+    </div>
+  </div>
+</div>
+
 <div class="my-3">
   <% @changelogs.each do |log|  %>
-    <div class="card my-2">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-sm-8">
-            <h5 class="card-title">
-              <%= log.name %>
-            </h5>
-          </div>
-          <div class="text-muted col-sm-4">
-            <%= log.created_at.strftime("%B %-d, %Y") %>
-          </div>
-        </div>
-
-        <p class="card-text">
-          <%= log.body %>
-        </p>
-      </div>
-
-      <div class="card-body">
-        <%= link_to 'Edit', edit_changelog_path(log), class: 'btn btn-light float-start mx-2' %>
-        <%= button_to 'Delete', changelog_path(log), class: 'btn btn-light float-start mx-2', method: 'delete' %>
-
-        <% if log.pull_request_id.present? %>
-          <%= link_to 'PR', "https://github.com/controlshift/agra/pull/#{log.pull_request_id}", class: 'btn btn-light float-start mx-2' %>
-        <% end %>
-      </div>
-    </div>
+    <%= render partial: 'shared/changelog', locals: {log: log} %>
   <% end %>
 </div>

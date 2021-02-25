@@ -1,0 +1,9 @@
+<div class="card my-2">
+  <div class="card-body">
+    <h5 class="card-title">
+      <%= link_to @changelog.pull_request.title, @changelog.pull_request_url %>
+    </h5>
+
+    <%= Octokit.markdown(@changelog.pull_request.body, mode: "gfm", context: "controlshift/agra").html_safe %>
+  </div>
+</div>

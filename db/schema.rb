@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_25_164330) do
+ActiveRecord::Schema.define(version: 2021_02_25_183623) do
 
   create_table "changelogs", force: :cascade do |t|
     t.string "name"
     t.text "body"
     t.string "pull_request_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "published_at"
+    t.integer "mailing_id"
+    t.index ["published_at"], name: "index_changelogs_on_published_at"
+    t.index ["pull_request_id"], name: "index_changelogs_on_pull_request_id"
+  end
+
+  create_table "mailings", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

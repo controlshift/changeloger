@@ -1,0 +1,30 @@
+
+<h5 class="my-5">Pending updates for next mailing</h5>
+
+<div class="my-5">
+  <div class="row">
+    <div class="col-2">
+      <%= button_to 'Package as Mailing', mailings_path, method: 'post', class: 'btn btn-light' %>
+    </div>
+    <div class="col-8">
+      Publish pending logs to marketing site and make available for mailing.
+    </div>
+  </div>
+</div>
+
+
+<% @unsent_changelogs.each do |log| %>
+  <%= render partial: 'shared/changelog', locals: {log: log} %>
+<% end %>
+
+<hr/>
+
+<h5 class="my-5">Previous Mailings</h5>
+
+
+<ul>
+  <% @mailings.each do |mailing| %>
+    <li><%= mailing.created_at.strftime("%B %-d, %Y") %> </li>
+
+<% end %>
+</ul>

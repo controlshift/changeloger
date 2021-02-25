@@ -3,7 +3,18 @@ class ChangelogsController < ApplicationController
 
   def index
     @changelog = Changelog.new
-    @changelogs = Changelog.all
+    @changelogs = Changelog.all.order('created_at DESC')
+  end
+
+  def new
+    @changelog = Changelog.new
+
+    if params[:pr_number]
+      pr = github_client.pull_request('controlshift/agra', params[:pr_number])
+      @changelog.name = pr.title
+      @changelog.body = pr.body
+      @changelog.pull_request_id = pr.number
+    end
   end
 
   def edit
@@ -22,17 +33,18 @@ class ChangelogsController < ApplicationController
     if @changelog.save
       redirect_to changelogs_path
     else
-      @changelogs = Changelog.all
-
-      render 'index'
+      render 'new'
     end
+  end
+
+  def publish
+    Changelog.where(published_at: nil).update_all(published_at: Time.now)
+    redirect_to changelogs_path
   end
 
   def destroy
     @changelog.destroy!
-    @changelogs = Changelog.all
-
-    render 'index'
+    redirect_to changelogs_path
   end
 
   private

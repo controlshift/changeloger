@@ -1,0 +1,32 @@
+<% @pull_requests.each do |pr| %>
+  <% log_exists =  Changelog.where(pull_request_id: pr.number).exists?  %>
+  <div class="card my-2 <%= log_exists ? 'has-log' : '' %>">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-8">
+          <h5 class="card-title">
+            <%= link_to pr.title, pr.html_url %>
+          </h5>
+          <% pr.labels.each do |label| %>
+            <span class="badge rounded-pill bg-light text-dark">
+              <%= label.name %>
+            </span>
+          <% end %>
+        </div>
+        <div class="col-sm-4">
+          <% if log_exists %>
+            <%= link_to 'Edit Log', edit_changelog_path(Changelog.where(pull_request_id: pr.number).first), class: 'btn btn-light' %>
+          <% else %>
+            <%= link_to 'Add Log', new_changelog_path(pr_number: pr.number), class: 'btn btn-light' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>
+
+<div class="mb-5 mt-3">
+  <%= link_to 'Next Page', pull_requests_path(page: (params[:page]&.to_i || 1) + 1 ) %>
+
+</div>
