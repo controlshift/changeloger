@@ -8,6 +8,9 @@
       </div>
       <div class="text-muted col-sm-4">
         <%= log.created_at.strftime("%B %-d, %Y") %>
+        <span class="badge rounded-pill bg-light text-dark">
+          <%= log.kind %>
+        </span>
       </div>
     </div>
 
