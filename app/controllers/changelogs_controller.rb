@@ -45,7 +45,7 @@ class ChangelogsController < ApplicationController
   end
 
   def feed
-    render json: Changelog.published
+    render json: Changelog.published.group_by { |m| m.created_at.beginning_of_month.strftime('%Y-%m') }
   end
 
   def destroy
