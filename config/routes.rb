@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :changelogs do
     collection do
       post :publish
+      get :feed
     end
   end
   resources :pull_requests
