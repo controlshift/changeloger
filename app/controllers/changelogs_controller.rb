@@ -60,6 +60,6 @@ class ChangelogsController < ApplicationController
   end
 
   def changelog_params
-    params.require(:changelog).permit(:name, :body, :pull_request_id, :kind)
+    params.require(:changelog).permit(:name, :body, :pull_request_id, :kind, :created_at)
   end
 end
