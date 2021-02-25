@@ -1,0 +1,12 @@
+<%= simple_form_for(@changelog) do |f| %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :body %>
+    <%= f.input :pull_request_id %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn btn-primary' %>
+  </div>
+<% end %>
