@@ -1,7 +1,7 @@
 class Changelog < ApplicationRecord
   belongs_to :mailing, optional: true
 
-  KINDS = ['fix', 'imporovement']
+  KINDS = ['fix', 'improvement']
 
   validates :name, presence: true
   validates :kind, presence: true, inclusion: {in: KINDS}
