@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get :feed_months
     end
   end
+  resources :users
   resources :pull_requests
   resources :mailings
 end
