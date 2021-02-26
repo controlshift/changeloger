@@ -17,6 +17,14 @@ class Changelog < ApplicationRecord
     client.pull_request('controlshift/agra', self.pull_request_id)
   end
 
+  def body_html
+    Kramdown::Document.new(body).to_html
+  end
+
+  def as_json(options = {})
+    super(options.merge(methods: :body_html))
+  end
+
   def pending?
     self.published_at.nil?
   end
