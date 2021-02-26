@@ -53,6 +53,10 @@ class ChangelogsController < ApplicationController
     render json: Changelog.published.group_by { |m| m.created_at.beginning_of_month.strftime('%Y-%m') }
   end
 
+  def feed_months
+    render json: Changelog.published.select("date_trunc('month', created_at) as month").distinct.order('month desc').collect{|m| m.month }
+  end
+
   def destroy
     @changelog.destroy!
     redirect_to changelogs_path

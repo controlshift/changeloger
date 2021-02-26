@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     collection do
       post :publish
       get :feed
+      get :feed_months
     end
   end
   resources :pull_requests
