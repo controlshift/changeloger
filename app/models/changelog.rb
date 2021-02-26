@@ -1,7 +1,7 @@
 class Changelog < ApplicationRecord
   belongs_to :mailing, optional: true
 
-  KINDS = ['fix', 'improvement']
+  KINDS = %w[fix improvement feature]
 
   validates :name, presence: true
   validates :kind, presence: true, inclusion: {in: KINDS}
