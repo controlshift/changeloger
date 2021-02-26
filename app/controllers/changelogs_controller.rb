@@ -3,8 +3,7 @@ require 'uri'
 
 class ChangelogsController < ApplicationController
   before_action :load_changelog, only: [:edit, :update, :destroy]
-  skip_before_action :authenticate_user!, only: [:feed]
-
+  skip_before_action :authenticate_user!, only: [:feed, :feed_months]
 
   def index
     @changelog = Changelog.new
