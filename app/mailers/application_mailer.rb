@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'systems@controlshiftlabs.com'
+  default from: ENV['MAILER_SENDER']
   layout 'mailer'
 end
