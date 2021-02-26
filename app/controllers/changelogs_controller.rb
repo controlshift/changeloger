@@ -54,7 +54,8 @@ class ChangelogsController < ApplicationController
   end
 
   def feed_months
-    render json: Changelog.published.select("date_trunc('month', created_at) as month").distinct.order('month desc').collect{|m| m.month }
+    months = Changelog.published.select("date_trunc('month', created_at) as month").distinct.order('month desc').collect{|m| m.month }
+    render json: {months: months}
   end
 
   def destroy
