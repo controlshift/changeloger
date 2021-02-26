@@ -1,3 +1,6 @@
+require 'net/http'
+require 'uri'
+
 class ChangelogsController < ApplicationController
   before_action :load_changelog, only: [:edit, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:feed]
@@ -41,6 +44,8 @@ class ChangelogsController < ApplicationController
 
   def publish
     Changelog.where(published_at: nil).update_all(published_at: Time.now)
+    resp = Faraday.post(ENV['NETLIFY_BUILD_HOOK'], '')
+
     redirect_to changelogs_path
   end
 
