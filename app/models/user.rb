@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-  devise :invitable, :database_authenticatable, :rememberable, :validatable
+  devise :invitable, :database_authenticatable, :rememberable, :validatable, :recoverable
 end
