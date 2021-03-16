@@ -53,7 +53,7 @@ class ChangelogsController < ApplicationController
   end
 
   def feed_months
-    months = Changelog.published.select("date_trunc('month', created_at) as month").distinct.order('month desc').collect{|m| m.month }
+    months = Changelog.where.not(published_at: nil).select("date_trunc('month', created_at) as month").distinct.order('month desc').collect{|m| m.month }
     render json: {months: months}
   end
 
