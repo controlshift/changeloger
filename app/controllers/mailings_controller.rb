@@ -11,7 +11,7 @@ class MailingsController < ApplicationController
     @unsent_changelogs = Changelog.where(mailing_id: nil).where.not(published_at: nil)
     @unsent_changelogs.update_all(mailing_id: @mailing.id)
 
-    redirect_to mailings_path
+    redirect_to mailing_path(@mailing)
   end
 
   def show

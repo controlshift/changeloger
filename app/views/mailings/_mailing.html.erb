@@ -1,0 +1,10 @@
+<div class="changes">
+  <% logs.each do |log| %>
+    <p>
+      <span class="category"><%= log.kind %></span>
+      <%= log.name %>
+    </p>
+
+    <a href="/changelog" style="font-weight: bold; text-decoration: none;">Read More &rarr;</a>
+  <% end %>
+</div>

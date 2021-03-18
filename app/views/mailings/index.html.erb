@@ -23,7 +23,7 @@
 
 <ul>
   <% @mailings.each do |mailing| %>
-    <li><%= mailing.created_at.strftime("%B %-d, %Y") %> </li>
+    <li><%= link_to mailing.created_at.strftime("%B %-d, %Y"), mailing_path(mailing) %> </li>
 
 <% end %>
 </ul>

@@ -6,6 +6,7 @@ class Changelog < ApplicationRecord
   validates :name, presence: true
   validates :kind, presence: true, inclusion: {in: KINDS}
 
+  scope :promoted, -> { where(promoted: true) }
   scope :published, -> { where.not(published_at: nil ).order('published_at DESC, created_at DESC') }
 
   def pull_request_url

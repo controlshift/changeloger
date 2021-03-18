@@ -1,0 +1,19 @@
+<h5><%= @mailing.created_at.strftime("%B %-d, %Y") %></h5>
+
+<div class="m-3">
+  Markup to copy/paste into mailchimp weekly update template to get nicely formatted release notes that match the marketing site.
+</div>
+
+<div class="mb-3">
+  <label for="all-items">All Items</label>
+  <textarea id="all-items" class="form-control" rows="15">
+    <%= render partial: 'mailing', locals: {logs: @mailing.changelogs } %>
+  </textarea>
+</div>
+
+<div class="mb-3">
+  <label for="promoted">Promoted</label>
+  <textarea id="promoted" class="form-control" rows="15">
+    <%= render partial: 'mailing', locals: {logs: @mailing.changelogs.promoted } %>
+  </textarea>
+</div>
