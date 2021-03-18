@@ -2,12 +2,12 @@
   <div class="card-body <%= log.pending? ? 'pending-log' : '' %>">
     <div class="row">
       <div class="col-sm-7">
-        <h5 class="card-title">
-          <input id="log-<%= log.id %>" type="checkbox" <%= log.promoted? ? 'checked' : '' %> data-action="change->changelog#promote" />
-          <label for="log-<%= log.id %>">
-            <%= log.name %>
+        <div class="form-check">
+          <input class="form-check-input" id="log-<%= log.id %>" type="checkbox" <%= log.promoted? ? 'checked' : '' %> data-action="change->changelog#promote" />
+          <label class="form-check-label" for="log-<%= log.id %>">
+            <h5><%= log.name %></h5>
           </label>
-        </h5>
+        </div>
       </div>
       <div class="text-muted col-sm-4">
         <%= log.created_at.strftime("%B %-d, %Y") %>
