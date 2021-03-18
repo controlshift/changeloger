@@ -8,6 +8,10 @@ Rails.application.routes.draw do
       get :feed
       get :feed_months
     end
+
+    member do
+      post :promote
+    end
   end
   resources :users
   resources :pull_requests

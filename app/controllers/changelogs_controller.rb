@@ -2,7 +2,7 @@ require 'net/http'
 require 'uri'
 
 class ChangelogsController < ApplicationController
-  before_action :load_changelog, only: [:edit, :update, :destroy]
+  before_action :load_changelog, only: [:edit, :update, :destroy, :promote]
   skip_before_action :authenticate_user!, only: [:feed, :feed_months]
 
   def index
@@ -46,6 +46,11 @@ class ChangelogsController < ApplicationController
     resp = Faraday.post(ENV['NETLIFY_BUILD_HOOK'], '')
 
     redirect_to changelogs_path
+  end
+
+  def promote
+    @changelog.update!(promoted: params[:promoted])
+    head :ok, content_type: "application/json"
   end
 
   def feed

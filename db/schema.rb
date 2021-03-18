@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_26_202218) do
+ActiveRecord::Schema.define(version: 2021_03_17_215244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2021_02_26_202218) do
     t.datetime "published_at"
     t.integer "mailing_id"
     t.string "kind"
+    t.boolean "promoted"
     t.index ["published_at"], name: "index_changelogs_on_published_at"
     t.index ["pull_request_id"], name: "index_changelogs_on_pull_request_id"
   end

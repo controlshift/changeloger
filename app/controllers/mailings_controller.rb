@@ -1,5 +1,4 @@
 class MailingsController < ApplicationController
-  before_action :load_changelog, only: [:edit, :update, :destroy]
 
   def index
     @unsent_changelogs = Changelog.where(mailing_id: nil).where.not(published_at: nil)
@@ -13,5 +12,9 @@ class MailingsController < ApplicationController
     @unsent_changelogs.update_all(mailing_id: @mailing.id)
 
     redirect_to mailings_path
+  end
+
+  def show
+    @mailing = Mailing.find(params[:id])
   end
 end
