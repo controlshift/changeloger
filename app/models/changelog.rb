@@ -23,7 +23,11 @@ class Changelog < ApplicationRecord
   end
 
   def as_json(options = {})
-    super(options.merge(methods: :body_html))
+    super(options.merge(methods: [:body_html, :date]))
+  end
+
+  def date
+    published_at
   end
 
   def pending?
