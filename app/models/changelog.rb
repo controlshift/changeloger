@@ -23,7 +23,15 @@ class Changelog < ApplicationRecord
   end
 
   def as_json(options = {})
-    super(options.merge(methods: [:body_html, :date]))
+    super(options.merge(methods: [:body_html, :date, :title, :excerpt]))
+  end
+
+  def excerpt
+    body.truncate(200, separator: ' ')
+  end
+
+  def title
+    name
   end
 
   def date
