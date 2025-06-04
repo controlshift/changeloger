@@ -35,6 +35,10 @@ gem 'kramdown'
 
 gem 'rollbar'
 
+gem 'bigdecimal'
+gem 'logger'
+gem 'mutex_m'
+
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
