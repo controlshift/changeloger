@@ -14,6 +14,6 @@ Rails.application.routes.draw do
     end
   end
   resources :users
-  resources :pull_requests
+  resources :pull_requests, only: [:index]
   resources :mailings
 end
